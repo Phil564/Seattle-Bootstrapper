@@ -12,6 +12,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Clone and install vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
       - uses: actions/cache@v3
         with:
           path: |
@@ -21,10 +25,6 @@ jobs:
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-
-      - name: Clone and install vcpkg
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          .\vcpkg\bootstrap-vcpkg.bat
       - name: Install dependencies
         run: |
           .\vcpkg\vcpkg install --triplet x64-windows
