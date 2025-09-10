@@ -15,7 +15,7 @@ DATA_MAP_IMPL_START(ClientInstallerSettings)
 	IMPL_DATA(ExeVersion, "");
 	IMPL_DATA(GoogleAnalyticsAccountPropertyID, "UA-43420590-15");
 	IMPL_DATA(ValidateInstalledExeVersion, false);
-	IMPL_DATA(UseNewCdn, true); 
+	IMPL_DATA(UseNewCdn, false); 
 	IMPL_DATA(UseNewVersionFetch, false);
 	IMPL_DATA(CheckIsStudioOutofDate, false);
 	IMPL_DATA(httpCprPostTimeout, 0);
