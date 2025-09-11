@@ -22,20 +22,20 @@ jobs:
             vcpkg\installed
             vcpkg\downloads
             vcpkg\packages
-          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+          key: ${{ runner.os }}Win32-vcpkg-${{ hashFiles('**/vcpkg.json') }}
           restore-keys: |
-            ${{ runner.os }}-vcpkg-
+            ${{ runner.os }}Win32-vcpkg-
       - name: Install dependencies
         run: |
-          .\vcpkg\vcpkg install --triplet x64-windows
+          .\vcpkg\vcpkg install --triplet x86-windows
       - name: Integrate vcpkg
         run: |
           .\vcpkg\vcpkg integrate install
       - uses: microsoft/setup-msbuild@v1.1
       - name: Build project
         run: |
-          msbuild Installer.sln /p:Configuration=Release /p:Platform=x64
+          msbuild Installer.sln /p:Configuration=Release /p:Platform=Win32
       - name: Upload build as artifact
         uses: actions/upload-artifact@v4
         with:
-          path: BootstrapperClient\bin\Release\x64\PekoraPlayerLauncher.exe
+          path: BootstrapperClient\bin\Release\Win32\PekoraPlayerLauncher.exe
